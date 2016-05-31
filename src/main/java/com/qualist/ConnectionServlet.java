@@ -32,6 +32,7 @@ public class ConnectionServlet extends HttpServlet {
         try {
             InitialContext ic = new InitialContext();
             dataSource = (DataSource) ic.lookup("java:comp/env/jdbc/DSTest");
+            System.out.println("created datasource");
         } catch (NamingException e) {
             e.printStackTrace();
         }
