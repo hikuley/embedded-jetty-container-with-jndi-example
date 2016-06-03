@@ -7,9 +7,10 @@
         <servlet-name>MainServlet</servlet-name>
         <servlet-class>com.qualist.MainServlet</servlet-class>
     </servlet>
+
     <servlet>
         <servlet-name>ConnectionServlet</servlet-name>
-        <servlet-class>com.qualist.ConnectionServlet</servlet-class>
+        <servlet-class>com.qualist.TestConnectionServlet</servlet-class>
     </servlet>
 
 
@@ -25,10 +26,11 @@
 
 
     <resource-ref>
-        <res-ref-name>jdbc/DSTest</res-ref-name>
+        <res-ref-name>jdbc/DSTest-c3p0</res-ref-name>
         <res-type>javax.sql.DataSource</res-type>
         <res-auth>Container</res-auth>
     </resource-ref>
+
 
 
 </web-app>

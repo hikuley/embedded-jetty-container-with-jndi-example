@@ -2,15 +2,37 @@
 <!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_0.dtd">
 <Configure id="wac" class="org.eclipse.jetty.webapp.WebAppContext">
 
-    <New id="DSTest" class="org.eclipse.jetty.plus.jndi.Resource">
+    <New id="DSTestC3p0" class="org.eclipse.jetty.plus.jndi.Resource">
         <Arg></Arg>
-        <Arg>jdbc/DSTest</Arg>
+        <Arg>jdbc/DSTest-c3p0</Arg>
         <Arg>
             <New class="com.mchange.v2.c3p0.ComboPooledDataSource">
                 <Set name="driverClass">com.mysql.jdbc.Driver</Set>
                 <Set name="jdbcUrl">jdbc:mysql://localhost:3306/testdb</Set>
-                <Set name="user">root</Set>
+                <Set name="user">newuser</Set>
                 <Set name="password"></Set>
+
+
+                <!--Başlangıç connection sayısı-->
+                <Set name="initialPoolSize">5</Set>
+
+                <!--Connection artış miktarı-->
+                <Set name="acquireIncrement">3</Set>
+
+                <!-- maximum connection sayısı-->
+                <Set name="maxPoolSize">20</Set>
+
+                <!-- minimum connection sayısı-->
+                <Set name="minPoolSize">3</Set>
+
+                <!-- max expire süresi 5 saniye
+                sonra kullanılmaya connection'lar discard edilir -->
+
+
+                <Set name="maxIdleTime">30</Set>
+                <Set name="maxIdleTimeExcessConnections">20</Set>
+
+
             </New>
         </Arg>
     </New>

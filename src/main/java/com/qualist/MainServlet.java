@@ -12,6 +12,7 @@ import java.io.IOException;
 public class MainServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        DbConnectionUtil.init();
         response.setContentType("text/html");
         response.setStatus(HttpServletResponse.SC_OK);
         response.getWriter().println("<h1>Connection Pool Project</h1>");

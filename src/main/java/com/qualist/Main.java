@@ -1,10 +1,7 @@
 package com.qualist;
 
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
-import org.eclipse.jetty.plus.jndi.Resource;
 import org.eclipse.jetty.server.Server;
-import org.eclipse.jetty.util.resource.ResourceCollection;
 import org.eclipse.jetty.webapp.Configuration;
 import org.eclipse.jetty.webapp.WebAppContext;
 
@@ -15,6 +12,9 @@ import org.eclipse.jetty.webapp.WebAppContext;
 public class Main {
 
     public static void main(String[] args) throws Exception {
+
+        // we are initializing DbConnectionUtil
+        DbConnectionUtil.init();
 
         //1. we are creating the service
         Server server = new Server(8080);
@@ -30,26 +30,14 @@ public class Main {
 
 
         //3. we are creating the web-application context
-        String webappDirLocation = "src/main/webapp/";
         WebAppContext webAppContext = new WebAppContext();
+        String webappDirLocation = "src/main/webapp/";
         webAppContext.setResourceBase(webappDirLocation);
         webAppContext.setContextPath("/");
         webAppContext.setDescriptor(webappDirLocation + "/WEB-INF/web.xml");
 
-        //4. we are creating datasource with manual programmatically.
 
-//        ComboPooledDataSource dataSource = new ComboPooledDataSource();
-//        dataSource.setDriverClass("com.mysql.jdbc.Driver");
-//        dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/testdb");
-//        dataSource.setUser("root");
-//        dataSource.setPassword("");
-//        dataSource.setInitialPoolSize(5);
-
-        //5. we are regitering the datasource for our server
-//        new Resource(server, "jdbc/DSTest", dataSource);
-
-
-        // we are starting server
+        //4 we are starting server
         server.setHandler(webAppContext);
         server.start();
         server.join();
